@@ -30,13 +30,19 @@ func main() {
 		n, addr, err := connection.ReadFromUDP(buffer)
 		fmt.Print("->", string(buffer[0:n-1]))
 
-		if strings.TrimSpace(string(buffer[0:n-1])) == "STOP" {
-			fmt.Println("Exiting UDP Server")
+		if strings.TrimSpace(string(buffer[0:n])) == "STOP" {
+			mensaje := []byte("Me voy byeeee")
+			_, err = connection.WriteToUDP(mensaje, addr)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			fmt.Println("ME VOY CHAO")
 			return
 		}
 
 		mensaje := []byte("Hola")
-		fmt.Printf("data: %s\n", string(mensaje))
+		//fmt.Printf("data: %s\n", string(mensaje))
 		_, err = connection.WriteToUDP(mensaje, addr)
 		if err != nil {
 			fmt.Println(err)
