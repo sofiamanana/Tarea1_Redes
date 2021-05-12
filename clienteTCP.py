@@ -34,6 +34,7 @@ while resp!=0:
                     flag = 1
         else:
             resp=0
+            print("El server no quiere jugar :c")
     else: 
         response = "0"
         
@@ -41,3 +42,4 @@ while resp!=0:
         resp=0
         
 socketCliente.close() #cierra el socket
+
