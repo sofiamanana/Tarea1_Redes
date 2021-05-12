@@ -46,14 +46,14 @@ func main() {
 			return
 		} else if strings.TrimSpace(string(buffer[0:n])) == "1" {
 			quiero_jugar := rand.Intn(100)
-			if quiero_jugar <= 89 { //quiere jugar
+			if quiero_jugar <= 79 { //quiere jugar
 				mensaje := []byte("2")
 				_, err = connection.WriteToUDP(mensaje, addr)
 				if err != nil {
 					fmt.Println(err)
 					return
 				}
-			} else if quiero_jugar > 89 { //no quiero jugar >:c
+			} else if quiero_jugar > 79 { //no quiero jugar >:c
 				mensaje := []byte("3")
 				_, err = connection.WriteToUDP(mensaje, addr)
 				if err != nil {
