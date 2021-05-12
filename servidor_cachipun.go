@@ -2,17 +2,17 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"net"
 	"strings"
-	"math/rand"
 )
 
 func mensaje_bienvenida() {
 	fmt.Printf("Iniciando Servidor\n")
 }
 
-func random(){
-	fmt.Print(rand.Intn(3),"\n")
+func random() {
+	fmt.Print(rand.Intn(3), "\n")
 }
 
 func main() {
@@ -44,39 +44,52 @@ func main() {
 			}
 			fmt.Println("ME VOY CHAO")
 			return
-		} else if strings.TrimSpace(string(buffer[0:n])) == "1"{
-			mensaje := []byte("2")
-			_, err = connection.WriteToUDP(mensaje, addr)
-			if err != nil {
-				fmt.Println(err)
-				return
+		} else if strings.TrimSpace(string(buffer[0:n])) == "1" {
+			quiero_jugar := rand.Intn(100)
+			if quiero_jugar <= 89 { //quiere jugar
+				mensaje := []byte("2")
+				_, err = connection.WriteToUDP(mensaje, addr)
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+			} else if quiero_jugar > 89 { //no quiero jugar >:c
+				mensaje := []byte("3")
+				_, err = connection.WriteToUDP(mensaje, addr)
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+
 			}
-		}else {
+
+		} else {
 			num_rand := rand.Intn(3)
-			if num_rand == 0{
+			if num_rand == 0 {
 				mensaje := []byte("Piedra")
 				_, err = connection.WriteToUDP(mensaje, addr)
 				if err != nil {
 					fmt.Println(err)
 					return
 				}
-			}else if num_rand == 1{
-			mensaje := []byte("Papel")
-			_, err = connection.WriteToUDP(mensaje, addr)
-			if err != nil {
-				fmt.Println(err)
-				return
+			} else if num_rand == 1 {
+				mensaje := []byte("Papel")
+				_, err = connection.WriteToUDP(mensaje, addr)
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+			} else if num_rand == 2 {
+				mensaje := []byte("Tijera")
+				_, err = connection.WriteToUDP(mensaje, addr)
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
 			}
-			}else if num_rand == 2{
-			mensaje := []byte("Tijera")
-			_, err = connection.WriteToUDP(mensaje, addr)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
+
 		}
-		 
-		} 
-		
+
 	}
 }
+
