@@ -25,7 +25,9 @@ while flag_suprema!=1:
         clientSocket.sendto(msg_cliente.encode(),(serverAddr,serverPort))  #manda 1
         msg, addr = clientSocket.recvfrom(2048) #recibe 2
         if msg.decode()!="2":
-            print("error no se que paso aaaaaaaaaaa")
+            print("No quiere jugar el sv")
+            msg ="2"
+            clientSockettcp.send(msg.encode())
         else:
 
             msg ="1"
@@ -98,8 +100,7 @@ while flag_suprema!=1:
                 clientSockettcp.send(msg.encode())
                 msg_cliente = clientSockettcp.recv(2048).decode()
     else:
-        print("el ql no quiere jugar")
-        
+        #print("Cliente no quiere jugar")
         msg = "STOP"
         clientSocket.sendto(msg.encode(),(serverAddr,serverPort))
         flag_suprema = 1            
