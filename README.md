@@ -1,4 +1,4 @@
-# Tarea1_Redes
+# Lab1_Redes
 
 #### Integrantes:
 - Sofía Mañana Bañales 201804535-5
