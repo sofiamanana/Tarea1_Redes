@@ -50,38 +50,37 @@ while flag_suprema!=1:
                 #iniciar nueva conexion
                 clientSocket = skt.socket(skt.AF_INET, skt.SOCK_DGRAM)
 
-
                 msg = msg.decode()
                 print("[*] El bot jugó "+str(msg))
 
                 if (msg_cliente == msg):
                     #print("Empate, el marcador se mantiene igual")
-                    mensj = "0"
+                    mensj = "0."+str(msg)
                     clientSockettcp.send(mensj.encode())
                 else:
                     if (msg_cliente== 'Piedra' or 'piedra') and (msg== 'Papel'):
                         #puntosBot+=1
-                        mensj = "1"
+                        mensj = "1."+str(msg)
                         clientSockettcp.send(mensj.encode())
                     elif (msg== 'Piedra') and (msg_cliente== 'Papel' or 'papel'):
                         #puntosCliente+=1
-                        mensj = "2"
+                        mensj = "2."+str(msg)
                         clientSockettcp.send(mensj.encode())
                     elif (msg== 'Piedra') and (msg_cliente== 'Tijera' or 'tijera'):
                         #puntosCliente+=1
-                        mensj = "2"
+                        mensj = "2."+str(msg)
                         clientSockettcp.send(mensj.encode())
                     elif (msg_cliente== 'Piedra' or 'piedra') and (msg== 'Tijera'):
                         #puntosBot+=1
-                        mensj = "1"
+                        mensj = "1."+str(msg)
                         clientSockettcp.send(mensj.encode())
                     elif (msg_cliente== 'Papel' or 'papel') and (msg== 'Tijera'):
                         #puntosBot+=1
-                        mensj = "1"
+                        mensj = "1."+str(msg)
                         clientSockettcp.send(mensj.encode())
                     elif (msg== 'Papel') and (msg_cliente== 'Tijera' or 'tijera'):
                         #puntosCliente+=1
-                        mensj = "2"
+                        mensj = "2."+str(msg)
                         clientSockettcp.send(mensj.encode())
                 msg_cliente = clientSockettcp.recv(2048).decode() 
                 
