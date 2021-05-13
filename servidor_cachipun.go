@@ -44,7 +44,7 @@ func main() {
 				fmt.Println(err)
 				return
 			}
-			fmt.Println("ME VOY CHAO")
+			fmt.Println("[*] El cliente quiere cerrar la conexion")
 			return
 		} else if strings.TrimSpace(string(buffer[0:n])) == "1" {
 			fmt.Print("Cliente mando -> PARTIDA \n")
@@ -119,3 +119,4 @@ func main() {
 
 	}
 }
+
