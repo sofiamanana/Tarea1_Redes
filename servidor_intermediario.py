@@ -17,30 +17,27 @@ flag_suprema = 0
 serverAddr = 'localhost' 
 serverPort = 50001 
 clientSocket = skt.socket(skt.AF_INET, skt.SOCK_DGRAM) #inicio socket udp
+print("[*] Consultando estado servidores de Cachipun")
 while flag_suprema!=1: 
 
     msg_cliente = clientSockettcp.recv(2048).decode() #recibe 1
-    print(msg_cliente)
     
+
     if msg_cliente == "1":
        
-        clientSocket.sendto(msg_cliente.encode(),(serverAddr,serverPort))  #manda 1ç
-        print("recibiendo mensaje de cachipun")
+        clientSocket.sendto(msg_cliente.encode(),(serverAddr,serverPort))  #manda 1
         msg, addr = clientSocket.recvfrom(2048) #recibe 2
-        print("ya lo guarde")
-        print(msg.decode())
+        print(addr)
+        #print(msg.decode())
         if msg.decode()!="2":
-            print("No quiere jugar el sv")
             msg ="2"
             clientSockettcp.send(msg.encode())
         else:
 
-            print("Si quiere jugar el sv")
-
             msg ="1"
             clientSockettcp.send(msg.encode())
             msg_cliente = clientSockettcp.recv(2048).decode() #recibe jugada de cliente
-
+            print("[*] Los servidores de juegos operativos")
 
             puntosCliente = 0
             puntosBot = 0
@@ -49,6 +46,7 @@ while flag_suprema!=1:
 
                 msg, addr = clientSocket.recvfrom(2048)
                 msg = msg.decode()
+                print("[*] El bot jugó "+str(msg))
 
                 if (msg_cliente == msg):
                     #print("Empate, el marcador se mantiene igual")
