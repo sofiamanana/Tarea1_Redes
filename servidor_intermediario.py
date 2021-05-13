@@ -21,7 +21,7 @@ print("[*] Consultando estado servidores de Cachipun")
 while flag_suprema!=1: 
 
     msg_cliente = clientSockettcp.recv(2048).decode() #recibe 1
-    
+
 
     if msg_cliente == "1":
        
@@ -45,6 +45,12 @@ while flag_suprema!=1:
                 clientSocket.sendto(msg_cliente.encode(),(serverAddr,serverPort)) #manda jugada a cachipun
 
                 msg, addr = clientSocket.recvfrom(2048)
+                ip, puerto = addr
+                clientSocket.close()
+                #iniciar nueva conexion
+                clientSocket = skt.socket(skt.AF_INET, skt.SOCK_DGRAM)
+
+
                 msg = msg.decode()
                 print("[*] El bot jugó "+str(msg))
 
