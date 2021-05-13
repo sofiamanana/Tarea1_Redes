@@ -29,10 +29,17 @@ while resp!=0:
                 jugada = input("Piedra, Papel o Tijera?\n")
                 socketCliente.send(jugada.strip().encode()) #manda el mensaje -> write
                 response = socketCliente.recv(2048).decode().strip() #recibe mensaje de vuelta -> response
+                response = response.strip(".")
+                bot = response[2:]
+                response = response[0]
                 
                 if response=="0":
+                    print("[*] Usted jugó "+ jugada)
+                    print("[*] El bot jugó "+bot)
                     print('[*] Esta ronda fue un empate')
                 elif response =="1":
+                    print("[*] Usted jugó "+ jugada)
+                    print("[*] El bot jugó "+bot)
                     print('[*] El bot ganó esta ronda')
                     puntosBot+=1
                     print("[*] El marcador actual es Jugador ", puntosCliente,", bot" , puntosBot)
@@ -47,6 +54,8 @@ while resp!=0:
                         socketCliente.send(jugada.strip().encode())
 
                 elif response =="2":
+                    print("[*] Usted jugó "+ jugada)
+                    print("[*] El bot jugó "+bot)
                     print('[*] Usted ganó la ronda :D')
                     puntosCliente+=1
                     print("[*] El marcador actual es Jugador ", puntosCliente,", bot" , puntosBot)
@@ -70,4 +79,5 @@ while resp!=0:
         resp=0
         
 socketCliente.close() #cierra el socket
+
 
