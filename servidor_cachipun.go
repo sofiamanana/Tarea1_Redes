@@ -8,7 +8,7 @@ import (
 )
 
 func mensaje_bienvenida() {
-	fmt.Printf("Iniciando Servidor\n")
+	fmt.Printf("[*] Bienvenidos a Servidor Cachipun 2021\n")
 }
 
 func random() {
@@ -16,7 +16,7 @@ func random() {
 }
 
 func main() {
-	go mensaje_bienvenida()
+	fmt.Printf("[*] Bienvenidos a Servidor Cachipun 2021\n")
 	PUERTO := ":50001"
 	BUFFER := 1024
 	s, err := net.ResolveUDPAddr("udp4", PUERTO)
@@ -31,9 +31,10 @@ func main() {
 	}
 	defer connection.Close()
 	buffer := make([]byte, BUFFER)
+	fmt.Printf("[*] El servicio para pedir partidas se ejecutara en el puerto: localhost" + PUERTO + "\n")
 	for {
 		n, addr, err := connection.ReadFromUDP(buffer)
-		fmt.Print("->", string(buffer[0:n]))
+		//fmt.Print("Cliente mando ->", string(buffer[0:n]), "\n")
 
 		if strings.TrimSpace(string(buffer[0:n])) == "STOP" {
 			mensaje := []byte("Me voy byeeee")
@@ -45,15 +46,17 @@ func main() {
 			fmt.Println("ME VOY CHAO")
 			return
 		} else if strings.TrimSpace(string(buffer[0:n])) == "1" {
+			fmt.Print("Cliente mando -> PARTIDA \n")
 			quiero_jugar := rand.Intn(100)
-			if quiero_jugar <= 79 { //quiere jugar
+			if quiero_jugar <= 89 { //quiere jugar
 				mensaje := []byte("2")
 				_, err = connection.WriteToUDP(mensaje, addr)
+				fmt.Println("lalalla mande mensaje aaaa")
 				if err != nil {
 					fmt.Println(err)
 					return
 				}
-			} else if quiero_jugar > 79 { //no quiero jugar >:c
+			} else if quiero_jugar > 89 { //no quiero jugar >:c
 				mensaje := []byte("3")
 				_, err = connection.WriteToUDP(mensaje, addr)
 				if err != nil {
@@ -64,8 +67,10 @@ func main() {
 			}
 
 		} else {
+			fmt.Print("Cliente mando -> JUGADA \n")
 			num_rand := rand.Intn(3)
 			if num_rand == 0 {
+				fmt.Print("Enviaremos -> 0 \n")
 				mensaje := []byte("Piedra")
 				_, err = connection.WriteToUDP(mensaje, addr)
 				if err != nil {
@@ -74,6 +79,7 @@ func main() {
 				}
 			} else if num_rand == 1 {
 				mensaje := []byte("Papel")
+				fmt.Print("Enviaremos -> 1 \n")
 				_, err = connection.WriteToUDP(mensaje, addr)
 				if err != nil {
 					fmt.Println(err)
@@ -81,6 +87,7 @@ func main() {
 				}
 			} else if num_rand == 2 {
 				mensaje := []byte("Tijera")
+				fmt.Print("Enviaremos -> 2 \n")
 				_, err = connection.WriteToUDP(mensaje, addr)
 				if err != nil {
 					fmt.Println(err)
@@ -92,4 +99,3 @@ func main() {
 
 	}
 }
-
