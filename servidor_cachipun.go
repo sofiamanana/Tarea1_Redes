@@ -31,7 +31,7 @@ func main() {
 	}
 	defer connection.Close()
 	buffer := make([]byte, BUFFER)
-	fmt.Printf("[*] El servicio para pedir partidas se ejecutara en el puerto: localhost" + PUERTO + "\n")
+	fmt.Printf("[*] El servicio para pedir partidas se ejecutara en el puerto localhost" + PUERTO + "\n")
 	for {
 		n, addr, err := connection.ReadFromUDP(buffer)
 		//fmt.Print("Cliente mando ->", string(buffer[0:n]), "\n")
@@ -51,7 +51,6 @@ func main() {
 			if quiero_jugar <= 89 { //quiere jugar
 				mensaje := []byte("2")
 				_, err = connection.WriteToUDP(mensaje, addr)
-				fmt.Println("lalalla mande mensaje aaaa")
 				if err != nil {
 					fmt.Println(err)
 					return
