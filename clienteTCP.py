@@ -70,3 +70,4 @@ while resp!=0:
         resp=0
         
 socketCliente.close() #cierra el socket
+
