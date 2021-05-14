@@ -9,6 +9,7 @@ Se requieren tres terminales distintos:
 - Primero, se debe ejecutar el servidor de Go, con el comando go run servidor_cachipun.go
 - Segundo, se debe ejecutar el servidor intermediario de python, con python servidor_intermediario.py
 - Tercero, se debe ejecutar el cliente,  con python clienteTCP.py
+- Programa realizado con Python 3.8 y Go 1.16 en sistema operativo Ubuntu 20.04.
 
 #### Terminales:
 - En el terminal del cliente, se le dará la bienvenida al juego, donde se deberá ingresar por pantalla "si" o "no" si se desea o no comenzar una partida. Al comenzar una partida, simplemente se le pedirá una de las opciones del juego Piedra, Papel o Tijeras. Debe ingresar la opción tal como están listadas en el nombre del juego (ej. "Piedra", también funcionará si se escribe "piedra")
